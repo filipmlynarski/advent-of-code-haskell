@@ -1,11 +1,5 @@
-import Data.List (group, sort, transpose, elemIndices)
+import Data.List (group, sort)
 import Data.Maybe (fromJust)
-
-parse :: String -> [String]
-parse = lines
-
-my_product :: (Int, Int) -> Int
-my_product (a, b) = a * b
 
 getIDs :: [[Int]] -> (Int, Int)
 getIDs [] = (0, 0)
@@ -45,7 +39,7 @@ main = do
     x <- readFile "2.in"
 
     print "Part1"
-    print $ my_product $ getIDs $ map (\x -> map length (group $ sort x)) $ parse x
+    print $ uncurry (*) $ getIDs $ map (\x -> map length (group $ sort x)) $ lines x
 
     print "Part2"
-    print $ removeDiff $ fromJust $ getFst (\x -> diff x == 1) $ combine $ parse x
+    print $ removeDiff $ fromJust $ getFst (\x -> diff x == 1) $ combine $ lines x
