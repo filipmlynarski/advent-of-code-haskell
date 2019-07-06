@@ -23,7 +23,7 @@ main = do
     print $ "Part1"
     print $ length $ reduct "" x
 
-    let letters = Set.fromList $ map toUpper x
+    let letters = Set.toList $ Set.fromList $ map toUpper x
 
     print $ "Part2"
-    print $ minimum $ map (\char -> length $ reduct "" $ removeLetter char x) $ Set.toList letters
+    print $ minimum $ map (\char -> length $ reduct "" $ removeLetter char x) letters
