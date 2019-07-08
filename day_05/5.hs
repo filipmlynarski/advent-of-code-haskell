@@ -1,5 +1,5 @@
 import           Data.Char (isUpper, toLower, toUpper)
-import qualified Data.Set as Set
+import           Data.List (nub)
 import qualified Data.Map as Map
 
 switchCase :: Char -> Char
@@ -21,9 +21,10 @@ main = do
     x <- readFile "5.in"
 
     print $ "Part1"
-    print $ length $ reduct "" x
+    let reducted = reduct "" x
+    print $ length $ reducted
 
-    let letters = Set.toList $ Set.fromList $ map toUpper x
+    let letters = nub $ map toUpper x
 
     print $ "Part2"
-    print $ minimum $ map (\char -> length $ reduct "" $ removeLetter char x) letters
+    print $ minimum $ map (\char -> length $ reduct "" $ removeLetter char reducted) letters
